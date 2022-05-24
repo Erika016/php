@@ -7,11 +7,11 @@ class Rectangulo
 
     // METODOS
     // SETTERS, PARA ESTABLECER EL VALOR DE LAS PROPIEDADES
-    private function setLado1($lado)
+    function setLado1($lado)
     {
         $this->lado1 = $lado;
     }
-    private function setLado2($lado)
+    function setLado2($lado)
     {
         $this->lado2 = $lado;
     }

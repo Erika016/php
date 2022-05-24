@@ -1,8 +1,9 @@
 <?php
 include 'Rectangulo.php';
 $figura = new Rectangulo();
-$figura->lado1 = 4;
-$figura->lado2 = 5;
+$figura->setlado1(10);
+$figura->setlado2(5);
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -21,7 +22,6 @@ $figura->lado2 = 5;
 <body>
     <h1>Area del rectángulo: <?php
 print $figura->obtenerArea();
-
 ?>
 
     </h1>
