@@ -11,26 +11,14 @@ class Database
         }
         // print 'Succesfully connected';
     }
-    function setQuery($query)
+    function setQuery($table)
     {
+        $query = 'select * from ' . $table . ' order by name';
         $this->result = $this->conn->query($query);
         if (!$this->result) {
             die('Error in query');
         }
-    }
-    function generateRows(...$params)
-    {
-        $numRows = $this->result->num_rows;
-        for ($i = 0; $i < $numRows; $i++) {
-            $row = $this->result->fetch_array(MYSQLI_ASSOC);
-            print '<tr>';
-            foreach ($params as $value) {
-                print '<td>' . htmlspecialchars($row[$value]) . '</td>';
-            }
-            print '</tr>';
-        }
-        $this->result->close();
-        $this->conn->close();
+        return $this->result->fetch_all(MYSQLI_ASSOC);
     }
     function insertData($table, $types, $data, ...$params)
     {
@@ -52,7 +40,7 @@ class Database
             die('Execute ha fallado' . $stmt->error);
         }
         $stmt->close();
-        // $this->conn->close();
+        $this->conn->close();
     }
     function updateData($table, $types, $data, $field, $id)
     {
@@ -72,7 +60,7 @@ class Database
             die('Execute ha fallado' . $stmt->error);
         }
         $stmt->close();
-        // $this->conn->close();
+        $this->conn->close();
     }
     function deleteData($table, $types, $id)
     {
@@ -92,6 +80,6 @@ class Database
             die('Execute ha fallado' . $stmt->error);
         }
         $stmt->close();
-        // $this->conn->close();
+        $this->conn->close();
     }
 }
